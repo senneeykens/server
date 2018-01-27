@@ -4,6 +4,9 @@ import be.kul.dijleserver.domain.Reading;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +19,17 @@ public class ReadingRepository {
     public void init() {
         readings = new ArrayList<>();
 
-        for ( int i = 0; i < 1000; i ++ ) {
+        LocalDateTime start = LocalDateTime.of(LocalDate.of(2018, 1, 1), LocalTime.of(0, 0));
+
+        for ( int i = 0; i < 2000; i ++ ) {
             readings.add ( new Reading(
+                    start,
                     Math.random() * 10,
                     Math.random() * 10,
                     Math.random() * 10
-            ) );
+            ));
+
+            start = start.plusHours(1);
         }
     }
 

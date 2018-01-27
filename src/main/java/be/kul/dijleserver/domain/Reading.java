@@ -1,7 +1,10 @@
 package be.kul.dijleserver.domain;
 
+import java.time.LocalDateTime;
+
 public class Reading {
 
+    private LocalDateTime samplingTimestamp;
     private double temperature;
     private double turbidity;
     private double disolvedOxygen;
@@ -9,10 +12,19 @@ public class Reading {
     public Reading() {
     }
 
-    public Reading(double temperature, double turbidity, double disolvedOxygen) {
+    public Reading(LocalDateTime samplingTimestamp, double temperature, double turbidity, double disolvedOxygen) {
+        this.samplingTimestamp = samplingTimestamp;
         this.temperature = temperature;
         this.turbidity = turbidity;
         this.disolvedOxygen = disolvedOxygen;
+    }
+
+    public LocalDateTime getSamplingTimestamp() {
+        return samplingTimestamp;
+    }
+
+    public void setSamplingTimestamp(LocalDateTime samplingTimestamp) {
+        this.samplingTimestamp = samplingTimestamp;
     }
 
     public double getTemperature() {
