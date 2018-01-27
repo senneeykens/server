@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  thymeleaf:
+    mode: LEGACYHTML5
+    characterEncoding: UTF-8
+    cache: false
