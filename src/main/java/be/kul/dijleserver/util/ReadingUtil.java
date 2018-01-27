@@ -1,16 +1,16 @@
 package be.kul.dijleserver.util;
 
-import be.kul.dijleserver.domain.Readings;
+import be.kul.dijleserver.dto.ReadingsDTO;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 public class ReadingUtil {
 
-    public static void fixTimestamps(Readings readings, LocalDateTime now) {
+    public static void fixTimestamps(ReadingsDTO readings, LocalDateTime now) {
 
-        final long nowUnix = now.toEpochSecond(ZoneOffset.UTC);
-        final long timestampUnix = readings.getTimestamp().toEpochSecond(ZoneOffset.UTC);
+        final long nowUnix = millis(now);
+        final long timestampUnix = millis(readings.getTimestamp());
 
         final long diffUnix = nowUnix - timestampUnix;
 
@@ -19,9 +19,13 @@ public class ReadingUtil {
         );
         readings.getData()
                 .forEach ( reading -> reading.setSamplingTimestamp(
-                        LocalDateTime.ofEpochSecond(reading.getSamplingTimestamp().toEpochSecond(ZoneOffset.UTC) + diffUnix, 0, ZoneOffset.UTC)
+                        LocalDateTime.ofEpochSecond(millis(reading.getSamplingTimestamp()) + diffUnix, 0, ZoneOffset.UTC)
                 ));
 
+    }
+
+    private static long millis(LocalDateTime now) {
+        return now.toEpochSecond(ZoneOffset.UTC);
     }
 
 }

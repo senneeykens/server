@@ -1,7 +1,7 @@
 package be.kul.dijleserver.util;
 
-import be.kul.dijleserver.domain.Reading;
-import be.kul.dijleserver.domain.Readings;
+import be.kul.dijleserver.dto.ReadingDTO;
+import be.kul.dijleserver.dto.ReadingsDTO;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -17,17 +17,17 @@ public class ReadingUtilTest {
     @Test
     public void fixTimestamps() {
 
-        final List<Reading> data = Arrays.asList(
-                new Reading(timestamp(2014, 1, 6, 1), 1, 1, 1),
-                new Reading(timestamp(2014, 1, 6, 2), 1, 1, 1),
-                new Reading(timestamp(2014, 1, 6, 3), 1, 1, 1),
-                new Reading(timestamp(2014, 1, 6, 4), 1, 1, 1),
-                new Reading(timestamp(2014, 1, 6, 5), 1, 1, 1)
+        final List<ReadingDTO> data = Arrays.asList(
+                new ReadingDTO(timestamp(2014, 1, 6, 1), "Skall Delos", 1, 1, 1, 1),
+                new ReadingDTO(timestamp(2014, 1, 6, 2), "Skall Delos",1, 1, 1, 1),
+                new ReadingDTO(timestamp(2014, 1, 6, 3), "Skall Delos",1, 1, 1, 1),
+                new ReadingDTO(timestamp(2014, 1, 6, 4), "Skall Delos",1, 1, 1, 1),
+                new ReadingDTO(timestamp(2014, 1, 6, 5), "Skall Delos",1, 1, 1, 1)
         );
 
         final LocalDateTime now = timestamp(2018, 1, 27, 13);
 
-        final Readings readings = new Readings();
+        final ReadingsDTO readings = new ReadingsDTO();
         readings.setData(data);
         readings.setTimestamp(timestamp(2014, 1, 1, 1));
 

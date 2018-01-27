@@ -1,12 +1,12 @@
-package be.kul.dijleserver.domain;
+package be.kul.dijleserver.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Readings {
+public class ReadingsDTO {
 
     private LocalDateTime timestamp;
-    private List<Reading> data;
+    private List<ReadingDTO> data;
 
     public LocalDateTime getTimestamp() {
         return timestamp;
@@ -16,11 +16,11 @@ public class Readings {
         this.timestamp = timestamp;
     }
 
-    public List<Reading> getData() {
+    public List<ReadingDTO> getData() {
         return data;
     }
 
-    public void setData(List<Reading> data) {
+    public void setData(List<ReadingDTO> data) {
         this.data = data;
     }
 

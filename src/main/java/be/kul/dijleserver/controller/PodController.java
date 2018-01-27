@@ -1,7 +1,7 @@
 package be.kul.dijleserver.controller;
 
-import be.kul.dijleserver.repository.ReadingRepository;
-import be.kul.dijleserver.domain.Readings;
+import be.kul.dijleserver.dto.ReadingsDTO;
+import be.kul.dijleserver.service.ReadingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,14 +16,19 @@ import static be.kul.dijleserver.util.ReadingUtil.fixTimestamps;
 @RequestMapping("/pod")
 public class PodController {
 
-    private ReadingRepository readingRepository;
+    private ReadingService readingService;
+
+    public PodController(ReadingService readingService) {
+        this.readingService = readingService;
+    }
 
     @PostMapping()
-    public ResponseEntity<String> message ( @RequestBody Readings readings ) {
+    public ResponseEntity<String> message ( @RequestBody ReadingsDTO readings ) {
 
         fixTimestamps ( readings, LocalDateTime.now() );
 
-        readings.getData().forEach( reading -> readingRepository.add(reading));
+        readings.getData()
+                .forEach( reading -> readingService.add(reading));
 
         return ResponseEntity.ok("Reading accepted");
     }
