@@ -25,12 +25,16 @@ public class WebController {
         return "/homepage";
     }
 
-    @GetMapping("/pod/{pod}")
-    public String homepage(@PathVariable("pod") String pod, Model model) {
-
+    @GetMapping("/pod/{pod}/graph")
+    public String podGraph(@PathVariable("pod") String pod, Model model) {
         model.addAttribute("pod", pod);
+        return "/pod-graph";
+    }
 
-        return "/pod";
+    @GetMapping("/pod/{pod}/map")
+    public String podMap(@PathVariable("pod") String pod, Model model) {
+        model.addAttribute("pod", pod);
+        return "/pod-map";
     }
 
     @ModelAttribute("pods")
