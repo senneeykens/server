@@ -1,6 +1,6 @@
 package be.kul.dijleserver.controller;
 
-import be.kul.dijleserver.ReadingRepository;
+import be.kul.dijleserver.repository.ReadingRepository;
 import be.kul.dijleserver.domain.Reading;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
