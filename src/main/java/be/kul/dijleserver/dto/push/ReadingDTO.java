@@ -10,6 +10,8 @@ public class ReadingDTO {
     private double turbidity;
     private double disolvedOxygen;
     private double flowRate;
+    private double latitude;
+    private double longtitude;
 
     public ReadingDTO() {
     }
@@ -62,6 +64,22 @@ public class ReadingDTO {
         this.flowRate = flowRate;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
+    }
+
     public static ReadingDTO of(Reading reading) {
         final ReadingDTO dto = new ReadingDTO();
         dto.setSamplingTimestamp(ReadingUtil.millis(reading.getSamplingTimestamp()));
@@ -69,6 +87,8 @@ public class ReadingDTO {
         dto.setFlowRate(reading.getFlowRate());
         dto.setTemperature(reading.getTemperature());
         dto.setTurbidity(reading.getTurbidity());
+        dto.setLatitude(50.878301);
+        dto.setLongtitude(4.696478);
         return dto;
     }
 }

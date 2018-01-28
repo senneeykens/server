@@ -31,6 +31,12 @@ public class Reading extends AbstractBaseObject {
     @Column
     private double flowRate;
 
+    @Column
+    private double latitude;
+
+    @Column
+    private double longtitude;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "run_id")
     private Run run;
@@ -94,6 +100,22 @@ public class Reading extends AbstractBaseObject {
         this.run = run;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
+    }
+
     @Override
     public String toString() {
         return "Reading{" +
@@ -113,6 +135,8 @@ public class Reading extends AbstractBaseObject {
         reading.setTurbidity(dto.getTurbidity());
         reading.setDisolvedOxygen(dto.getDisolvedOxygen());
         reading.setFlowRate(dto.getFlowRate());
+        reading.setLatitude(dto.getLatitude());
+        reading.setLongtitude(dto.getLongtitude());
         return reading;
     }
 }
