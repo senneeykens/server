@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="/fragments :: head"></head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<div class="page-wrapper">
+    <div data-th-remove="tag" data-th-replace="/fragments :: navbar-top"></div>
+    <div class="clearfix"> </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <div data-th-remove="tag" data-th-replace="/fragments :: sidebar"></div>
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE TITLE-->
+                <h1 class="page-title"><span data-th-text="@{'Graph for run ' + ${name} + ' (' + ${type} + ')'}"> POD Graph for </span>
+                    <small>statistics, charts, recent events and reports</small>
+                </h1>
+                <!-- END PAGE TITLE-->
+
+                <!-- Styles -->
+                <style>
+                    #chartdiv {
+                        width: 100%;
+                        height: 600px;
+                    }
+                </style>
+                <link rel="stylesheet" data-th-href="@{/js/plugins/amcharts/amstockcharts/plugins/export/export.css}" type="text/css" media="all" />
+
+                <div id="chartdiv"></div>
+
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+    <div data-th-remove="tag" data-th-replace="/fragments :: footer"></div>
+</div>
+
+<div data-th-remove="tag" data-th-replace="/fragments :: scripts"></div>
+
+<script data-th-src="@{/js/plugins/morris.min.js}"></script>
+<script data-th-src="@{/js/plugins/amcharts/amstockcharts/amcharts.js}"></script>
+<script data-th-src="@{/js/plugins/amcharts/amstockcharts/serial.js}"></script>
+<script data-th-src="@{/js/plugins/amcharts/amstockcharts/amstock.js}"></script>
+<script data-th-src="@{/js/plugins/amcharts/amstockcharts/plugins/export/export.min.js}"></script>
+<script data-th-src="@{/js/plugins/amcharts/amstockcharts/themes/black.js}"></script>
+
+<script data-th-inline="javascript" type="text/javascript">
+    /*<![CDATA[*/
+    const c_run_name = [[${name}]];
+    const c_run_type = [[${type}]];
+    /*]]>*/
+</script>
+
+<script data-th-src="@{/js/pages/run-graph.js}" type="text/javascript"></script>
+
+</body>
+
+</html>

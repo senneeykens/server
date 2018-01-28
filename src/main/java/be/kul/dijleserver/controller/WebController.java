@@ -1,10 +1,14 @@
 package be.kul.dijleserver.controller;
 
-import be.kul.dijleserver.dto.PodDTO;
-import be.kul.dijleserver.repository.PodRepository;
+import be.kul.dijleserver.dto.web.RunDTO;
+import be.kul.dijleserver.repository.RunRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -14,10 +18,13 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/")
 public class WebController {
 
-    private PodRepository podRepository;
+    @Value("${google.api.key}")
+    private String apikey;
 
-    public WebController(PodRepository podRepository) {
-        this.podRepository = podRepository;
+    private RunRepository runRepository;
+
+    public WebController(RunRepository runRepository) {
+        this.runRepository = runRepository;
     }
 
     @GetMapping
@@ -25,23 +32,26 @@ public class WebController {
         return "/homepage";
     }
 
-    @GetMapping("/pod/{pod}/graph")
-    public String podGraph(@PathVariable("pod") String pod, Model model) {
-        model.addAttribute("pod", pod);
-        return "/pod-graph";
+    @GetMapping("/run/{name}/{type}/graph")
+    public String podGraph(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("type", type);
+        return "/run-graph";
     }
 
-    @GetMapping("/pod/{pod}/map")
-    public String podMap(@PathVariable("pod") String pod, Model model) {
-        model.addAttribute("pod", pod);
-        return "/pod-map";
+    @GetMapping("/run/{name}/{type}/map")
+    public String podMap(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("type", type);
+        model.addAttribute("apikey", apikey);
+        return "/run-map";
     }
 
-    @ModelAttribute("pods")
-    public List<PodDTO> pods() {
-        return podRepository.findAll()
+    @ModelAttribute("runs")
+    public List<RunDTO> runs() {
+        return runRepository.findAll()
                 .stream()
-                .map(PodDTO::of)
+                .map(RunDTO::of)
                 .sorted( (a, b) -> a.getName().compareToIgnoreCase(b.getName()))
                 .collect(toList());
     }

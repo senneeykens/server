@@ -1,6 +1,6 @@
 package be.kul.dijleserver.domain;
 
-import be.kul.dijleserver.dto.ReadingDTO;
+import be.kul.dijleserver.dto.push.ReadingDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,8 +31,8 @@ public class Reading extends AbstractBaseObject {
     private double flowRate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pod_id")
-    private Pod pod;
+    @JoinColumn(name = "run_id")
+    private Run run;
 
     public Reading() {
     }
@@ -85,12 +85,12 @@ public class Reading extends AbstractBaseObject {
         this.flowRate = flowRate;
     }
 
-    public Pod getPod() {
-        return pod;
+    public Run getRun() {
+        return run;
     }
 
-    public void setPod(Pod pod) {
-        this.pod = pod;
+    public void setRun(Run run) {
+        this.run = run;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Reading extends AbstractBaseObject {
                 ", turbidity=" + turbidity +
                 ", disolvedOxygen=" + disolvedOxygen +
                 ", flowRate=" + flowRate +
-                ", pod=" + pod +
+                ", run=" + run +
                 '}';
     }
 

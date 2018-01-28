@@ -1,9 +1,9 @@
 package be.kul.dijleserver.service;
 
-import be.kul.dijleserver.dto.ReadingDTO;
+import be.kul.dijleserver.dto.push.RunDTO;
 
 public interface ReadingService {
 
-    void add ( ReadingDTO readingDTO );
+    void add ( RunDTO dto );
 
 }

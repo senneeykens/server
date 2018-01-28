@@ -76,15 +76,15 @@
                 <li class="nav-item start active open">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-bar-chart"></i>
-                        <span class="title">Pods</span>
+                        <span class="title">Graph</span>
                         <span class="selected"></span>
                         <span class="arrow open"></span>
                     </a>
-                    <ul class="sub-menu" data-th-each="pod: ${pods}">
+                    <ul class="sub-menu" data-th-each="run: ${runs}">
                         <li class="nav-item start active open">
-                            <a data-th-href="@{'/pod/' + ${pod.name} + '/graph'}" class="nav-link ">
+                            <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/graph'}" class="nav-link ">
                                 <i class="icon-bar-chart"></i>
-                                <span class="title" data-th-text="${pod.name}">Dashboard 1</span>
+                                <span class="title" data-th-text="${run.name}">Dashboard 1</span>
                                 <!--
                                 <span class="selected"></span>
                                 -->
@@ -99,11 +99,11 @@
                         <span class="selected"></span>
                         <span class="arrow open"></span>
                     </a>
-                    <ul class="sub-menu" data-th-each="pod: ${pods}">
+                    <ul class="sub-menu" data-th-each="run: ${runs}">
                         <li class="nav-item start active open">
-                            <a data-th-href="@{'/pod/' + ${pod.name} + '/map'}" class="nav-link ">
+                            <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/map'}" class="nav-link ">
                                 <i class="icon-map"></i>
-                                <span class="title" data-th-text="${pod.name}">Dashboard 1</span>
+                                <span class="title" data-th-text="${run.name}">Dashboard 1</span>
                                 <!--
                                 <span class="selected"></span>
                                 -->

@@ -1,7 +1,7 @@
 package be.kul.dijleserver.util;
 
-import be.kul.dijleserver.dto.ReadingDTO;
-import be.kul.dijleserver.dto.ReadingsDTO;
+import be.kul.dijleserver.dto.push.ReadingDTO;
+import be.kul.dijleserver.dto.push.RunDTO;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -27,7 +27,7 @@ public class ReadingUtilTest {
 
         final LocalDateTime now = timestamp(2018, 1, 27, 13);
 
-        final ReadingsDTO readings = new ReadingsDTO();
+        final RunDTO readings = new RunDTO();
         readings.setData(data);
         readings.setTimestamp(timestamp(2014, 1, 1, 1));
 

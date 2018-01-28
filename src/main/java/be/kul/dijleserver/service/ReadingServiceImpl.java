@@ -1,38 +1,44 @@
 package be.kul.dijleserver.service;
 
-import be.kul.dijleserver.domain.Pod;
 import be.kul.dijleserver.domain.Reading;
-import be.kul.dijleserver.dto.ReadingDTO;
-import be.kul.dijleserver.repository.PodRepository;
+import be.kul.dijleserver.domain.Run;
+import be.kul.dijleserver.dto.push.RunDTO;
 import be.kul.dijleserver.repository.ReadingRepository;
+import be.kul.dijleserver.repository.RunRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ReadingServiceImpl implements ReadingService{
 
-    private PodRepository podRepository;
+    private RunRepository runRepository;
     private ReadingRepository readingRepository;
 
-    public ReadingServiceImpl(PodRepository podRepository, ReadingRepository readingRepository) {
-        this.podRepository = podRepository;
+    public ReadingServiceImpl(RunRepository runRepository, ReadingRepository readingRepository) {
+        this.runRepository = runRepository;
         this.readingRepository = readingRepository;
     }
 
     @Async
     @Override
-    public void add(ReadingDTO readingDTO) {
+    public void add(RunDTO dto) {
 
-        Pod pod = podRepository.findByName(readingDTO.getPod());
-        if ( pod == null ) {
-            pod = new Pod();
-            pod.setName(readingDTO.getPod());
-            pod = podRepository.save(pod);
+        Run run = runRepository.findByNameAndType(dto.getName(), dto.getType());
+        if ( run == null ) {
+            run = new Run();
+            run.setName(dto.getName());
+            run.setType(dto.getType());
+            run = runRepository.save(run);
         }
 
-        final Reading reading = Reading.of ( readingDTO );
-        reading.setPod(pod);
-        readingRepository.save ( reading );
+        final Run savedRun = run;
+
+        dto.getData()
+                .forEach( readingDTO -> {
+                    final Reading reading = Reading.of ( readingDTO );
+                    reading.setRun(savedRun);
+                    readingRepository.save ( reading );
+                });
 
     }
 
