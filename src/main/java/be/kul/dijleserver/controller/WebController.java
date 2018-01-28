@@ -1,8 +1,10 @@
 package be.kul.dijleserver.controller;
 
 import be.kul.dijleserver.domain.Reading;
+import be.kul.dijleserver.domain.Run;
 import be.kul.dijleserver.domain.RunType;
 import be.kul.dijleserver.dto.web.RunDTO;
+import be.kul.dijleserver.repository.ReadingRepository;
 import be.kul.dijleserver.repository.RunRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,14 +27,37 @@ public class WebController {
     private String apikey;
 
     private RunRepository runRepository;
+    private ReadingRepository readingRepository;
 
-    public WebController(RunRepository runRepository) {
+    public WebController(RunRepository runRepository, ReadingRepository readingRepository) {
         this.runRepository = runRepository;
+        this.readingRepository = readingRepository;
     }
 
     @GetMapping
     public String homepage() {
         return "/homepage";
+    }
+
+    @GetMapping("/admin")
+    public String admin(Model model) {
+        model.addAttribute("runs",
+                runRepository.findAll()
+                        .stream()
+                        .map(RunDTO::of)
+                        .collect(toList())
+        );
+        return "/admin";
+    }
+
+    @GetMapping("/admin/delete/run/{name}/{type}")
+    public String admin(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
+        final Run run = runRepository.findByNameAndType(name, RunType.valueOf(type));
+        if ( run != null ) {
+            readingRepository.delete(run.getReadings());
+            runRepository.delete(run);
+        }
+        return "redirect:/admin";
     }
 
     @GetMapping("/run/{name}/{type}/data")
