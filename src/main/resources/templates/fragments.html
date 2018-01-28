@@ -1,6 +1,6 @@
 <head data-th-remove="tag" data-th-fragment="head">
     <meta charset="utf-8" />
-    <title>Dijle server</title>
+    <title>Dijle Pods</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Preview page of Metronic Admin Theme #1 for statistics, charts, recent events and reports" name="description" />
@@ -24,31 +24,6 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <!-- END HEAD -->
 </head>
-
-<div data-th-remove="tag" data-th-fragment="navbar-top">
-    <div class="page-header navbar navbar-fixed-top">
-        <!-- BEGIN HEADER INNER -->
-        <div class="page-header-inner ">
-            <!-- BEGIN LOGO -->
-            <div class="page-logo">
-                <a href="index.html">
-                    <!--
-                    <img src="/images/logo.jpg" alt="logo" class="logo-default" /> </a>
-                    -->
-                <div class="menu-toggler sidebar-toggler">
-                    <span></span>
-                </div>
-            </div>
-            <!-- END LOGO -->
-            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-                <span></span>
-            </a>
-            <!-- END RESPONSIVE MENU TOGGLER -->
-        </div>
-        <!-- END HEADER INNER -->
-    </div>
-</div>
 
 <div data-th-remove="tag" data-th-fragment="sidebar">
     <div class="page-sidebar-wrapper">
@@ -80,53 +55,104 @@
                         <span class="selected"></span>
                         <span class="arrow open"></span>
                     </a>
-                    <ul class="sub-menu" data-th-each="run: ${runs}">
-                        <li class="nav-item start active open">
-                            <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/data'}" class="nav-link ">
-                                <i class="icon-list"></i>
-                                <span class="title" data-th-text="${run.name}">Dashboard 1</span>
-                                <!--
-                                <span class="selected"></span>
-                                -->
+                    <ul class="sub-menu">
+                        <li class="nav-item active open">
+                            <a href="#" class="nav-link nav-toggle">
+                                <span class="title">FIXED</span>
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu" data-th-each="run: ${runs}">
+                                <li class="nav-item open " data-th-if="${run.type == T(be.kul.dijleserver.domain.RunType).FIXED}">
+                                    <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/data'}" class="nav-link ">
+                                        <span class="title" data-th-text="${run.name}">Dashboard 1</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item active open">
+                            <a href="#" class="nav-link nav-toggle">
+                                <span class="title">MOVING</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu open" data-th-each="run: ${runs}">
+                                <li class="nav-item open " data-th-if="${run.type == T(be.kul.dijleserver.domain.RunType).MOVING}">
+                                    <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/data'}" class="nav-link ">
+                                        <span class="title" data-th-text="${run.name}">Dashboard 1</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item start active open">
+                <li class="nav-item active open">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-bar-chart"></i>
                         <span class="title">Graph</span>
                         <span class="selected"></span>
                         <span class="arrow open"></span>
                     </a>
-                    <ul class="sub-menu" data-th-each="run: ${runs}">
-                        <li class="nav-item start active open">
-                            <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/graph'}" class="nav-link ">
-                                <i class="icon-bar-chart"></i>
-                                <span class="title" data-th-text="${run.name}">Dashboard 1</span>
-                                <!--
-                                <span class="selected"></span>
-                                -->
+                    <ul class="sub-menu">
+                        <li class="nav-item active open">
+                            <a href="#" class="nav-link nav-toggle">
+                                <span class="title">FIXED</span>
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu" data-th-each="run: ${runs}">
+                                <li class="nav-item open " data-th-if="${run.type == T(be.kul.dijleserver.domain.RunType).FIXED}">
+                                    <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/graph'}" class="nav-link ">
+                                        <span class="title" data-th-text="${run.name}">Dashboard 1</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item active open">
+                            <a href="#" class="nav-link nav-toggle">
+                                <span class="title">MOVING</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu open" data-th-each="run: ${runs}">
+                                <li class="nav-item open " data-th-if="${run.type == T(be.kul.dijleserver.domain.RunType).MOVING}">
+                                    <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/graph'}" class="nav-link ">
+                                        <span class="title" data-th-text="${run.name}">Dashboard 1</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item start active open">
+                <li class="nav-item active open">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-map"></i>
                         <span class="title">Map</span>
                         <span class="selected"></span>
                         <span class="arrow open"></span>
                     </a>
-                    <ul class="sub-menu" data-th-each="run: ${runs}">
-                        <li class="nav-item start active open">
-                            <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/map'}" class="nav-link ">
-                                <i class="icon-map"></i>
-                                <span class="title" data-th-text="${run.name}">Dashboard 1</span>
-                                <!--
-                                <span class="selected"></span>
-                                -->
+                    <ul class="sub-menu">
+                        <li class="nav-item active open">
+                            <a href="#" class="nav-link nav-toggle">
+                                <span class="title">FIXED</span>
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu" data-th-each="run: ${runs}">
+                                <li class="nav-item open " data-th-if="${run.type == T(be.kul.dijleserver.domain.RunType).FIXED}">
+                                    <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/map'}" class="nav-link ">
+                                        <span class="title" data-th-text="${run.name}">Dashboard 1</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item active open">
+                            <a href="#" class="nav-link nav-toggle">
+                                <span class="title">MOVING</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu open" data-th-each="run: ${runs}">
+                                <li class="nav-item open " data-th-if="${run.type == T(be.kul.dijleserver.domain.RunType).MOVING}">
+                                    <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/map'}" class="nav-link ">
+                                        <span class="title" data-th-text="${run.name}">Dashboard 1</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>

@@ -2,10 +2,8 @@
 <html>
 <head data-th-replace="/fragments :: head"></head>
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<body class="page-sidebar-closed-hide-logo page-content-white">
 <div class="page-wrapper">
-    <div data-th-remove="tag" data-th-replace="/fragments :: navbar-top"></div>
-    <div class="clearfix"> </div>
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
         <div data-th-remove="tag" data-th-replace="/fragments :: sidebar"></div>
@@ -29,6 +27,8 @@
                                 <th>Temperature</th>
                                 <th>Disolved Oxygen</th>
                                 <th>Flow Rate</th>
+                                <th>Latitude</th>
+                                <th>Longtitude</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,6 +38,8 @@
                                 <td data-th-text="${reading.temperature}" align="right"> Otto </td>
                                 <td data-th-text="${reading.disolvedOxygen}" align="right"> makr124 </td>
                                 <td data-th-text="${reading.flowRate}" align="right"> </td>
+                                <td data-th-text="${reading.latitude}" align="right"> </td>
+                                <td data-th-text="${reading.longtitude}" align="right"> </td>
                             </tr>
                             </tbody>
                         </table>
