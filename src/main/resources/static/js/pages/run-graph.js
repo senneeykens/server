@@ -11,7 +11,9 @@ function generateChartData() {
 
         for ( var i = 0; i < data.length; i++ ) {
             var reading = data[i];
-            var samplingDate = new Date ( reading.samplingTimestamp );
+
+            var samplingDate = new Date (0);
+            samplingDate.setUTCSeconds( reading.samplingTimestamp, 0 );
 
             chartData1.push( {
                 "date": samplingDate,
@@ -45,6 +47,9 @@ function drawChart() {
     var chart = AmCharts.makeChart( "chartdiv", {
         "type": "stock",
         "theme": "none",
+        "categoryAxesSettings": {
+            "minPeriod": "ss"
+        },
         "dataSets": [ {
             "title": "Temperature",
             "fieldMappings": [ {
@@ -136,11 +141,34 @@ function drawChart() {
         },
 
         "periodSelector": {
-            "position": "left",
+
+            "position": "right",
+            "dateFormat": "YYYY-MM-DD JJ:NN",
+            "inputFieldWidth": 150,
             "periods": [
                 {
-                    "period": "DD",
+                    "period": "hh",
+                    "count": 1,
+                    "label": "1 hour"
+                }, {
+                    "period": "hh",
+                    "count": 2,
+                    "label": "2 hours"
+                }, {
+                    "period": "hh",
+                    "count": 5,
                     "selected": true,
+                    "label": "5 hour"
+                }, {
+                    "period": "hh",
+                    "count": 12,
+                    "label": "12 hours"
+                }, {
+                    "period": "MAX",
+                    "label": "MAX"
+                },
+                {
+                    "period": "DD",
                     "count": 1,
                     "label": "1 day"
                 },
@@ -158,11 +186,12 @@ function drawChart() {
                 }, {
                     "period": "MAX",
                     "label": "MAX"
-                } ]
+                }
+                ]
         },
 
         "dataSetSelector": {
-            "position": "left"
+            "position": "right"
         },
 
         "export": {

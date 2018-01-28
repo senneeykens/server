@@ -2,21 +2,20 @@ package be.kul.dijleserver.dto.push;
 
 import be.kul.dijleserver.domain.RunType;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class RunDTO {
 
-    private LocalDateTime timestamp;
+    private long timestamp;
     private String name;
     private RunType type;
     private List<ReadingDTO> data;
 
-    public LocalDateTime getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 

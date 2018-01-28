@@ -1,13 +1,11 @@
 package be.kul.dijleserver.dto.push;
 
 import be.kul.dijleserver.domain.Reading;
-
-import java.time.LocalDateTime;
+import be.kul.dijleserver.util.ReadingUtil;
 
 public class ReadingDTO {
 
-    private LocalDateTime samplingTimestamp;
-    private String pod;
+    private long samplingTimestamp;
     private double temperature;
     private double turbidity;
     private double disolvedOxygen;
@@ -16,28 +14,19 @@ public class ReadingDTO {
     public ReadingDTO() {
     }
 
-    public ReadingDTO(LocalDateTime samplingTimestamp, String pod, double temperature, double turbidity, double disolvedOxygen, double flowRate) {
+    public ReadingDTO(long samplingTimestamp, double temperature, double turbidity, double disolvedOxygen, double flowRate) {
         this.samplingTimestamp = samplingTimestamp;
-        this.pod = pod;
         this.temperature = temperature;
         this.turbidity = turbidity;
         this.disolvedOxygen = disolvedOxygen;
         this.flowRate = flowRate;
     }
 
-    public String getPod() {
-        return pod;
-    }
-
-    public void setPod(String pod) {
-        this.pod = pod;
-    }
-
-    public LocalDateTime getSamplingTimestamp() {
+    public long getSamplingTimestamp() {
         return samplingTimestamp;
     }
 
-    public void setSamplingTimestamp(LocalDateTime samplingTimestamp) {
+    public void setSamplingTimestamp(long samplingTimestamp) {
         this.samplingTimestamp = samplingTimestamp;
     }
 
@@ -75,7 +64,7 @@ public class ReadingDTO {
 
     public static ReadingDTO of(Reading reading) {
         final ReadingDTO dto = new ReadingDTO();
-        dto.setSamplingTimestamp(reading.getSamplingTimestamp());
+        dto.setSamplingTimestamp(ReadingUtil.millis(reading.getSamplingTimestamp()));
         dto.setDisolvedOxygen(reading.getDisolvedOxygen());
         dto.setFlowRate(reading.getFlowRate());
         dto.setTemperature(reading.getTemperature());

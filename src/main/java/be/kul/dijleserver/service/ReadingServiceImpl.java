@@ -7,6 +7,7 @@ import be.kul.dijleserver.repository.ReadingRepository;
 import be.kul.dijleserver.repository.RunRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReadingServiceImpl implements ReadingService{
@@ -21,6 +22,7 @@ public class ReadingServiceImpl implements ReadingService{
 
     @Async
     @Override
+    @Transactional
     public void add(RunDTO dto) {
 
         Run run = runRepository.findByNameAndType(dto.getName(), dto.getType());

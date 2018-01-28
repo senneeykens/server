@@ -75,6 +75,25 @@
                 </li>
                 <li class="nav-item start active open">
                     <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-list"></i>
+                        <span class="title">Data</span>
+                        <span class="selected"></span>
+                        <span class="arrow open"></span>
+                    </a>
+                    <ul class="sub-menu" data-th-each="run: ${runs}">
+                        <li class="nav-item start active open">
+                            <a data-th-href="@{'/run/' + ${run.name} + '/' + ${run.type} + '/data'}" class="nav-link ">
+                                <i class="icon-list"></i>
+                                <span class="title" data-th-text="${run.name}">Dashboard 1</span>
+                                <!--
+                                <span class="selected"></span>
+                                -->
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item start active open">
+                    <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-bar-chart"></i>
                         <span class="title">Graph</span>
                         <span class="selected"></span>

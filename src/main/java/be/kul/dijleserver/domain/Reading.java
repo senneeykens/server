@@ -1,6 +1,7 @@
 package be.kul.dijleserver.domain;
 
 import be.kul.dijleserver.dto.push.ReadingDTO;
+import be.kul.dijleserver.util.ReadingUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -107,7 +108,7 @@ public class Reading extends AbstractBaseObject {
 
     public static Reading of(ReadingDTO dto) {
         final Reading reading = new Reading();
-        reading.setSamplingTimestamp(dto.getSamplingTimestamp());
+        reading.setSamplingTimestamp(ReadingUtil.of(dto.getSamplingTimestamp()));
         reading.setTemperature(dto.getTemperature());
         reading.setTurbidity(dto.getTurbidity());
         reading.setDisolvedOxygen(dto.getDisolvedOxygen());

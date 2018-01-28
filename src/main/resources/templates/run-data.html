@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="/fragments :: head"></head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<div class="page-wrapper">
+    <div data-th-remove="tag" data-th-replace="/fragments :: navbar-top"></div>
+    <div class="clearfix"> </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <div data-th-remove="tag" data-th-replace="/fragments :: sidebar"></div>
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE TITLE-->
+                <h1 class="page-title"><span data-th-text="@{'Graph for run ' + ${name} + ' (' + ${type} + ')'}"> POD Graph for </span>
+                    <small>statistics, charts, recent events and reports</small>
+                </h1>
+                <!-- END PAGE TITLE-->
+
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Turbidity</th>
+                                <th>Temperature</th>
+                                <th>Disolved Oxygen</th>
+                                <th>Flow Rate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-th-each="reading: ${readings}">
+                                <td data-th-text="${reading.samplingTimestamp}" align="right"> 1 </td>
+                                <td data-th-text="${reading.turbidity}" align="right"> Mark </td>
+                                <td data-th-text="${reading.temperature}" align="right"> Otto </td>
+                                <td data-th-text="${reading.disolvedOxygen}" align="right"> makr124 </td>
+                                <td data-th-text="${reading.flowRate}" align="right"> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+    <div data-th-remove="tag" data-th-replace="/fragments :: footer"></div>
+</div>
+
+<div data-th-remove="tag" data-th-replace="/fragments :: scripts"></div>
+
+</body>
+
+</html>

@@ -10,22 +10,22 @@ public class ReadingUtil {
     public static void fixTimestamps(RunDTO runDTO, LocalDateTime now) {
 
         final long nowUnix = millis(now);
-        final long timestampUnix = millis(runDTO.getTimestamp());
+        final long timestampUnix = runDTO.getTimestamp();
 
         final long diffUnix = nowUnix - timestampUnix;
 
-        runDTO.setTimestamp(
-                LocalDateTime.ofEpochSecond(nowUnix, 0, ZoneOffset.UTC)
-        );
+        runDTO.setTimestamp(nowUnix);
         runDTO.getData()
-                .forEach ( reading -> reading.setSamplingTimestamp(
-                        LocalDateTime.ofEpochSecond(millis(reading.getSamplingTimestamp()) + diffUnix, 0, ZoneOffset.UTC)
-                ));
-
+                .forEach ( reading -> reading.setSamplingTimestamp(reading.getSamplingTimestamp() + diffUnix) )
+                ;
     }
 
-    private static long millis(LocalDateTime now) {
+    public static long millis(LocalDateTime now) {
         return now.toEpochSecond(ZoneOffset.UTC);
+    }
+
+    public static LocalDateTime of ( long millis ) {
+        return LocalDateTime.ofEpochSecond(millis, 0, ZoneOffset.UTC);
     }
 
 }
