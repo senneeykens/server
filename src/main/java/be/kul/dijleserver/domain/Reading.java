@@ -13,25 +13,25 @@ public class Reading extends AbstractBaseObject {
     private LocalDateTime samplingTimestamp;
 
     @NotNull
-    @Column
+    @Column(columnDefinition = "double precision")
     private double temperature;
 
     @NotNull
-    @Column
+    @Column(columnDefinition = "double precision")
     private double turbidity;
 
     @NotNull
-    @Column
+    @Column(columnDefinition = "double precision")
     private double disolvedOxygen;
 
     @NotNull
-    @Column
+    @Column(columnDefinition = "double precision")
     private double flowRate;
 
-    @Column
+    @Column(columnDefinition = "double precision")
     private double latitude;
 
-    @Column
+    @Column(columnDefinition = "double precision")
     private double longtitude;
 
     @ManyToOne(fetch = FetchType.LAZY)

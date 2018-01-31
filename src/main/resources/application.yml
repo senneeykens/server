@@ -19,9 +19,16 @@ google:
     key: AIzaSyBiXXRQ89oU0vrf-5fnCwpEap8LOIPRV50
 ---
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
   profiles: production
   thymeleaf:
     prefix: classpath:/templates
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/dijlecontrol_prd_db
+    username: dijlecontrol_prd_user
 server:
   port: 80
 logging:

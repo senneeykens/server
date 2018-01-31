@@ -2,15 +2,15 @@ package be.kul.dijleserver.domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "tbl_run")
+@Table(name = "tbl_run",
+        indexes = {
+        @Index(columnList = "name", name = "idx_name")
+})
 public class Run extends AbstractBaseObject {
 
     @NotBlank
