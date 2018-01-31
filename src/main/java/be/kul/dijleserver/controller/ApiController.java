@@ -2,8 +2,8 @@ package be.kul.dijleserver.controller;
 
 import be.kul.dijleserver.domain.Run;
 import be.kul.dijleserver.domain.RunType;
-import be.kul.dijleserver.dto.push.ReadingDTO;
 import be.kul.dijleserver.dto.push.RunDTO;
+import be.kul.dijleserver.dto.web.ReadingDTO;
 import be.kul.dijleserver.repository.RunRepository;
 import be.kul.dijleserver.service.ReadingService;
 import org.springframework.http.ResponseEntity;

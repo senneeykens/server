@@ -1,31 +1,9 @@
 package be.kul.dijleserver.dto.web;
 
 import be.kul.dijleserver.domain.Run;
-import be.kul.dijleserver.domain.RunType;
+import be.kul.dijleserver.dto.AbstractRunDTO;
 
-public class RunDTO {
-
-    private String name;
-    private RunType type;
-
-    public RunDTO() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public RunType getType() {
-        return type;
-    }
-
-    public void setType(RunType type) {
-        this.type = type;
-    }
+public class RunDTO extends AbstractRunDTO{
 
     public static RunDTO of(Run run) {
         final RunDTO dto = new RunDTO();

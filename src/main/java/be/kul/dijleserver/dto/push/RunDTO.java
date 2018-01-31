@@ -1,14 +1,12 @@
 package be.kul.dijleserver.dto.push;
 
-import be.kul.dijleserver.domain.RunType;
+import be.kul.dijleserver.dto.AbstractRunDTO;
 
 import java.util.List;
 
-public class RunDTO {
+public class RunDTO extends AbstractRunDTO{
 
     private long timestamp;
-    private String name;
-    private RunType type;
     private List<ReadingDTO> data;
 
     public long getTimestamp() {
@@ -17,22 +15,6 @@ public class RunDTO {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public RunType getType() {
-        return type;
-    }
-
-    public void setType(RunType type) {
-        this.type = type;
     }
 
     public List<ReadingDTO> getData() {

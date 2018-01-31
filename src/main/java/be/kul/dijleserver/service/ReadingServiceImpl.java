@@ -37,7 +37,7 @@ public class ReadingServiceImpl implements ReadingService{
 
         dto.getData()
                 .forEach( readingDTO -> {
-                    final Reading reading = Reading.of ( readingDTO );
+                    final Reading reading = readingDTO.toReading();
                     reading.setRun(savedRun);
                     readingRepository.save ( reading );
                 });
