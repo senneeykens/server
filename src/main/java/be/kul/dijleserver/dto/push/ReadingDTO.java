@@ -10,7 +10,7 @@ import java.math.RoundingMode;
 
 public class ReadingDTO extends AbstractReadingDTO {
 
-    private String gpgga;
+    private String gps;
 
     public ReadingDTO() {
     }
@@ -19,12 +19,12 @@ public class ReadingDTO extends AbstractReadingDTO {
         super(samplingTimestamp, temperature, turbidity, disolvedOxygen, flowRate);
     }
 
-    public String getGpgga() {
-        return gpgga;
+    public String getGps() {
+        return gps;
     }
 
-    public void setGpgga(String gpgga) {
-        this.gpgga = gpgga;
+    public void setGps(String gpgga) {
+        this.gps = gpgga;
     }
 
     public Reading toReading() {
@@ -35,10 +35,10 @@ public class ReadingDTO extends AbstractReadingDTO {
         reading.setDisolvedOxygen(this.getDisolvedOxygen());
         reading.setFlowRate(this.getFlowRate());
 
-        if (StringUtils.hasText(this.getGpgga())) {
-            final String[] split = this.getGpgga().split(",");
-            reading.setLatitude(numberMagic (split[2]));
-            reading.setLongtitude(numberMagic (split[4]));
+        if (StringUtils.hasText(this.getGps())) {
+            final String[] split = this.getGps().split(",");
+            reading.setLatitude(numberMagic (split[3]));
+            reading.setLongtitude(numberMagic (split[5]));
 
         }
         return reading;

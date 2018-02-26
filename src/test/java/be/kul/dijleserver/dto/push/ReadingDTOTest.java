@@ -10,10 +10,10 @@ public class ReadingDTOTest {
     public void gpggaConversion() {
 
         final ReadingDTO readingDTO = new ReadingDTO();
-        readingDTO.setGpgga("$GPGGA,154653,4428.2011,N,00440.5161,W,0,00,,-00044.7,M,051.6,M,,*6C");
+        readingDTO.setGps("$GPRMC,204432.00,A,5111.59428,N,00432.82947,E,4.773,,250218,,,D*7E");
 
-        assertEquals ( 44.282011, readingDTO.toReading().getLatitude(), 0.0 );
-        assertEquals (  4.405161, readingDTO.toReading().getLongtitude(), 0.0 );
+        assertEquals ( 51.115943, readingDTO.toReading().getLatitude(), 0.0 );
+        assertEquals ( 04.328295, readingDTO.toReading().getLongtitude(), 0.0 );
 
     }
 
