@@ -6,6 +6,7 @@ import be.kul.dijleserver.dto.push.RunDTO;
 import be.kul.dijleserver.dto.web.ReadingDTO;
 import be.kul.dijleserver.repository.RunRepository;
 import be.kul.dijleserver.service.ReadingService;
+import be.kul.dijleserver.util.JsonUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,9 @@ public class ApiController {
     }
 
     @PostMapping("/reading")
-    public ResponseEntity<String> message (@RequestBody RunDTO runDTO ) {
+    public ResponseEntity<String> message (@RequestBody String runDTOAsString ) {
+
+        final RunDTO runDTO = JsonUtil.asObject(runDTOAsString, RunDTO.class );
 
         fixTimestamps ( runDTO, LocalDateTime.now() );
 
